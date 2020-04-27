@@ -1,21 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import IPost from '../ipost.model';
+import { NgForm } from '@angular/forms';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
   styleUrls: ['./post-create.component.css']
 })
-export class PostCreateComponent implements OnInit {
+export class PostCreateComponent {
 
-  newPost = 'NO CONTENTE';
-  enteredValue = '';
-  constructor() { }
+  constructor(public postService: PostService) { }
 
-  ngOnInit() {
+  onAppPost(form: NgForm) {
+
+    if (form.invalid) { return; }
+
+    const post: IPost = {
+      title: form.value.title,
+      content: form.value.content
+    };
+    this.postService.addPost(post);
+
+    form.resetForm();
   }
-
-  onAppPost() {
-    this.newPost = this.enteredValue;
-  }
-
 }
+

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import IPost from './posts/ipost.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  postsArr: IPost[] = [];
+
+  onNewPost(thePost: IPost): void {
+    this.postsArr.push(thePost);
+  }
+
+  getPosts(): IPost[] {
+    return this.postsArr;
+  }
 }
