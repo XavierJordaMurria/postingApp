@@ -17,6 +17,7 @@ export class PostCreateComponent {
     if (form.invalid) { return; }
 
     const post: IPost = {
+      id: null,
       title: form.value.title,
       content: form.value.content
     };
