@@ -48,11 +48,23 @@ app.get("/api/posts", (req, res, next) => {
 });
 
 app.delete("/api/posts/:id", (req, res, next) => {
-    Post.find()
-    res.status(200).json({
-        message: `Posts deleted! id: ${req.params.id}`,
-        posts: documents
-      });
+    if (!req.params || !req.params.id){
+        res.status(400).json({
+            message: "Wrong API!",
+          });
+    }
+
+    Post.deleteOne({_id:req.params.id})
+    .then(()=>{
+        res.status(200).json({
+            message: `Post ${req.params.id} deleted`,
+          });
+    })
+    .catch((err) => {
+        res.status(500).json({
+            message: `${err}`,
+        });
+    });
 });
 
 module.exports = app;

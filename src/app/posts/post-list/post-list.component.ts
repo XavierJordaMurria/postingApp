@@ -12,24 +12,6 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   posts: IPost[] = [];
   private postSubscriptoin: Subscription;
-/*   posts: {title: string, content: string}[] = [
-    {
-      title: 'Title1',
-      content: 'Content1',
-    },
-    {
-      title: 'Title2',
-      content: 'Content2',
-    },
-    {
-      title: 'Title3',
-      content: 'Content3',
-    },
-    {
-      title: 'Title4',
-      content: 'Content4',
-    }
-  ]; */
 
   constructor(public postService: PostService) { }
 
@@ -43,5 +25,9 @@ export class PostListComponent implements OnInit, OnDestroy {
       this.posts = theCurrentPostArr;
     });
     this.postService.getPosts();
+  }
+
+  onDelete(postID: string) {
+    this.postService.deletePost(postID);
   }
 }
