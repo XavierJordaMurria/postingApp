@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import IPostDB from './ipost.model.db';
 import { Router } from '@angular/router';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable({providedIn: 'root'})
 export class PostService {
@@ -16,13 +17,14 @@ export class PostService {
     }
 
     getPosts() {
-        this.http.get<{message: string, posts: any}>('http://localhost:3000/api/posts')
+        this.http.get<{message: string, posts: IPostDB[]}>('http://localhost:3000/api/posts')
         .pipe(map((postData) => {
             return postData.posts.map((post) => {
                 return {
                     title: post.title,
                     content: post.content,
-                    id: post._id
+                    id: post._id,
+                    imagePath: post.imagePath
                 };
             });
         }))
@@ -41,18 +43,43 @@ export class PostService {
     }
 
 
-    addPost(thePost: IPost): void {
-        this.http.post<{message: string, postId: string}>('http://localhost:3000/api/posts', thePost)
+    addPost(thePost: IPost,  image: File): void {
+        const postData = new FormData();
+        postData.append('id', thePost.id);
+        postData.append('title', thePost.title);
+        postData.append('content', thePost.content);
+        postData.append('image', image);
+
+        this.http
+        .post<{message: string, post: IPost}>(
+            'http://localhost:3000/api/posts',
+            postData)
         .subscribe((res) => {
             console.log(res.message);
-            thePost.id = res.postId;
-            this.posts.push(thePost);
+            this.posts.push(res.post);
             this.reloadRoot();
         });
     }
 
-    updatePost(thePost: IPost): void {
-        this.http.put<{message: string, postId: string}>('http://localhost:3000/api/posts/' + thePost.id, thePost)
+    updatePost(thePost: IPost, image: File | string): void {
+        let postData: IPost | FormData;
+        if (typeof(image) === 'object') {
+            postData = new FormData();
+            postData.append('title', thePost.title);
+            postData.append('content', thePost.content);
+            postData.append('image', image, thePost.title);
+
+        } else {
+            postData = {
+                id: thePost.id,
+                title: thePost.title,
+                content: thePost.content,
+                imagePath: image
+            };
+        }
+        this.http.put<{message: string, postId: string}>(
+            'http://localhost:3000/api/posts/' + thePost.id,
+            postData)
         .subscribe((res) => {
             const updatedPosts = [...this.posts];
             const oldPostIndex = updatedPosts.findIndex(p => p.id === thePost.id);

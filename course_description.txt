@@ -1,0 +1,84 @@
+Create modern, scalable and high-speed Web Applications with Angular (formerly named Angular 2, now just "Angular") and Node.js + Express + MongoDB.
+
+Angular 1 and NodeJS, together with ExpressJS (a NodeJS Framework) and MongoDB formed the very popular MEAN stack. Now is the time to dive into MEAN 2.0 and replace Angular 1 with Angular 2+.
+
+Benefit from the many improvements and advantages Angular offers you: Speed, ease of development, highly reactive, awesome support for asynchronous operations, great scalability and more!
+And combine these advantages with the power of a NodeJS + Express + MongoDB backend!
+
+Learn or refresh the Angular Basics!
+
+This course is no Angular course, but it includes detailed explanations of the core concepts used as well as about Angular in general. However, keep in mind that, as this course is no Angular course, having additional resources like my "Angular - The Complete Guide" course is recommended.
+
+In this course, Maximilian, experienced web developer as well as author of many 5-star rated Udemy courses and host of the "Academind" coding channel on YouTube, will take you on a hands-on journey to get you to build your own Angular + NodeJS Applications in no time.
+
+This course follows a hands-on approach, which means that the whole course is structured around one big application and the different concepts will be explained detailedly as they are introduced in this application.
+
+Specifically, you will learn how to:
+
+    Set up a NodeJS + Express + MongoDB + Angular Application with the help of the Angular CLI
+
+    Use NodeJS and Express efficiently
+
+    Build reusable Components in Angular and create a reactive User Experience with the Tools provided by Angular
+
+    Connect your NodeJS (or any other language!) backend with your Angular App through Angular’s HttpClient service
+
+    Provide appropriate endpoints on your Backend, for your Frontend to consume
+
+    Add advanced features like file upload and pagination
+
+    Make your Application more secure by implementing Users, Authentication as well as Authorization
+
+    Handle Errors gracefully
+
+    And much more...!
+
+This hands-on concept allows you to not get stuck in the theory, but instantly see real implementation examples!
+
+Hear what students of other courses as well as viewers of my YouTube channel have to say
+
+Max has gone through great lengths to create great content and this course has been great. His teaching style covers everything from basic to advanced topics, and his explanations have been thorough on each topic
+
+Max demonstrates very good knowledge of the subject matter and great enthusiasm in delivering the lectures.
+
+Max does a wonderful job making the core concepts of Angular approachable and accessible.
+
+Don’t stop at the basics!
+
+Do you know those courses which show you a "Hello World“ example and then call it an end? That won’t happen to you in this course. While beginning with a very basic app and basic features, you will quickly be able to incorporate many different Routes, Observables, Events, Authentication and Authorization, Error Handling and much more into your applications.
+The best thing is: You’ll learn all that by putting it into practice immediately! No wall of powerpoint slides, no unrealistic mini-examples – this is the real deal!
+
+Who should take this course?
+
+    Basic NodeJS/Express and Angular Experience is strongly recommended
+
+    You should be familiar with HTML, CSS and JavaScript basics, too
+
+    MongoDB (+ Mongoose) knowledge is a plus as MongoDB will be used in this course but won’t be subject of in-depth explanations
+
+    NO expert or advanced knowledge on any of these topics is required or assumed
+
+By the end of this course, you will be able to create your own, awesome NodeJS + Angular applications!
+What you’ll learn
+
+    Build real Angular + NodeJS applications
+    Understand how Angular works and how it interacts with Backends
+    Connect any Angular Frontend with a NodeJS Backend
+    Use MongoDB with Mongoose to interact with Data on the Backend
+    Use ExpressJS as a NodeJS Framework
+    Provide a great user experience by using Optimistic Updating on the Frontend
+    Improve any Angular (+ NodeJS) application by adding Error Handling
+
+Are there any course requirements or prerequisites?
+
+    Concepts behind NodeJS, Express and MongoDB (with Mongoose) will be refreshed in this course but as this course is focused on the connection of these technologies with Angular, basic knowledge about them is strongly recommended
+    It is recommended to have beginner-level Angular knowledge, though this course will provided a detailed refresher and will explain the core concepts used in detail
+    HTML, CSS and basic JavaScript knowledge is assumed throughout this course
+    NO advanced or expert knowledge about any of these topics is assumed or required
+
+Who this course is for:
+
+    This course is for everyone interested in putting existing Angular and NodeJS knowledge into action
+    If you're familiar with the basics of Angular and NodeJS, this course provides a detailed guide on how to connect both technologies
+    Everyone interested in building a modern, full-stack application
+    Students who want to exercise with their NodeJS and Angular skills will find a great opportunity to do so
