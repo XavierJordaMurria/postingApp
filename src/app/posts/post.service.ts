@@ -4,6 +4,7 @@ import { Subject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import IPostDB from './ipost.model.db';
+import { Router } from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class PostService {
@@ -11,7 +12,7 @@ export class PostService {
 
     private postUpdated = new Subject<IPost[]>();
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
     }
 
     getPosts() {
@@ -36,7 +37,7 @@ export class PostService {
     }
 
     getPost(postId: string): Observable<IPostDB> {
-        return this.http.get<IPostDB>('http://localhost:3000/api/post/' + postId);
+        return this.http.get<IPostDB>('http://localhost:3000/api/posts/' + postId);
     }
 
 
@@ -46,7 +47,7 @@ export class PostService {
             console.log(res.message);
             thePost.id = res.postId;
             this.posts.push(thePost);
-            this.postUpdated.next([...this.posts]);
+            this.reloadRoot();
         });
     }
 
@@ -57,7 +58,7 @@ export class PostService {
             const oldPostIndex = updatedPosts.findIndex(p => p.id === thePost.id);
             updatedPosts[oldPostIndex] = thePost;
             this.posts = updatedPosts;
-            this.postUpdated.next([...this.posts]);
+            this.reloadRoot();
             console.log(res);
         });
     }
@@ -70,5 +71,10 @@ export class PostService {
             this.posts = updatedPosts;
             this.postUpdated.next([...this.posts]);
         });
+    }
+
+    private reloadRoot() {
+        this.postUpdated.next([...this.posts]);
+        this.router.navigate(['/']);
     }
 }
