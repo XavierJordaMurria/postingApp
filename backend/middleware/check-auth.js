@@ -3,7 +3,7 @@ const user = require('../routes/user');
 
 module.exports = (req, res, next) => {
     try{
-        const token = req.headers.authorization.split(" ")[1]; // e.g "Barear asdfñjkñasd0f9qu2451"
+        const token = req.headers.authorization.split(" ")[1]; // e.g "Bearer asdfñjkñasd0f9qu2451"
         jwt.verify(token, user.jwtSecret);
         next();
     } catch(e){

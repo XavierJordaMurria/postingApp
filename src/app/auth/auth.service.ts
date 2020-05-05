@@ -6,6 +6,7 @@ import { AuthData } from './auth-data-model';
 export default class AuthService {
     private readonly port = 3000;
     private readonly path = `http://localhost:${this.port}/api/user`;
+    private token: string;
 
     constructor(private http: HttpClient) { }
 
@@ -29,9 +30,14 @@ export default class AuthService {
             password: password
         };
 
-        this.http.post(url, authData)
+        this.http.post<{token: string}>(url, authData)
         .subscribe((response) => {
             console.log(response);
+            this.token = response.token;
         });
+    }
+
+    getToken(): string {
+        return this.token;
     }
 }
