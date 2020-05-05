@@ -1,8 +1,10 @@
 const express = require("express")
+const checkAuth = require('../middleware/check-auth');
 
 const multer = require('multer');
 
 const router = express.Router();
+
 
 const MIME_TYPE_MAP = {
   'image/png': 'png',
@@ -30,7 +32,11 @@ const storage = multer.diskStorage({
 
 const Post = require('./../models/post');
 
-router.post("", multer({storage: storage}).single("image"), (req, res, next) => {
+router.post(
+  "",
+  checkAuth,
+  multer({storage: storage}).single("image"),
+  (req, res, next) => {
     const imageURL = req.protocol + '://' + req.get('host');
     const post = new Post({ 
       title: req.body.title,
@@ -52,9 +58,11 @@ router.post("", multer({storage: storage}).single("image"), (req, res, next) => 
     console.log(post);
   });
   
-  router.put("/:id",
-   multer({storage: storage}).single("image"),
-   (req, res, next) => {
+  router.put(
+    "/:id",
+    checkAuth,
+    multer({storage: storage}).single("image"),
+    (req, res, next) => {
 
     let imagePath = req.body.imagePath;
 
@@ -98,7 +106,7 @@ router.post("", multer({storage: storage}).single("image"), (req, res, next) => 
     postQuery
     .then((documents)=>{
       fetchedPosts = documents;
-      return Post.count();
+      return Post.countDocuments();
     })
     .then((count) => {
       res.status(200).json({
@@ -123,7 +131,7 @@ router.post("", multer({storage: storage}).single("image"), (req, res, next) => 
     });
   });
   
-  router.delete("/:id", (req, res, next) => {
+  router.delete("/:id", checkAuth, (req, res, next) => {
       if (!req.params || !req.params.id){
           res.status(400).json({
               message: "Wrong API!",
