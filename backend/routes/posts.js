@@ -41,7 +41,8 @@ router.post(
     const post = new Post({ 
       title: req.body.title,
       content: req.body.content,
-      imagePath: imageURL + '/images/' + req.file.filename
+      imagePath: imageURL + '/images/' + req.file.filename,
+      creator: req.userData.userId
     });
 
     post.save()

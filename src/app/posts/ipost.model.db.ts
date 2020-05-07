@@ -3,4 +3,5 @@ export default interface IPostDB {
     title: string;
     content: string;
     imagePath?: string;
+    creator: string;
 }
