@@ -82,7 +82,8 @@ export class PostService {
                 id: thePost.id,
                 title: thePost.title,
                 content: thePost.content,
-                imagePath: image
+                imagePath: image,
+                creator: null
             };
         }
         this.http.put<{message: string, postId: string}>(

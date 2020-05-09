@@ -76,17 +76,23 @@ router.post(
       _id:req.body.id,
        title: req.body.title,
        content: req.body.content,
-       imagePath: imagePath
+       imagePath: imagePath,
+       creator: req.userData.userId
     });
 
-    console.log(`Updating post ${post} // %${req.params.id}`);
-    Post.updateOne({_id: post._id}, post)
+    Post.updateOne({_id: post._id, creator: req.userData.userId }, post)
     .then((documents) => {
-      console.log(documents)
-      res.status(200).json({
-          message: "Update successfully!",
-          posts: documents
-        });
+        if (documents.nModified > 0){
+          res.status(200).json({
+              message: "Update successfully!",
+              posts: documents
+            });
+        }else{
+          res.status(404).json({
+            message: "Not authorized!",
+            posts: documents
+          });
+        }
       })
       .catch(e => console.error(`Error updating post!! ${e}`))
   });
@@ -139,11 +145,17 @@ router.post(
           });
       }
   
-      Post.deleteOne({_id:req.params.id})
-      .then(()=>{
+      Post.deleteOne({_id:req.params.id, creator: req.userData.userId })
+      .then((result)=>{
+        if (result.n > 0){
           res.status(200).json({
-              message: `Post ${req.params.id} deleted`,
+              message: "Deleted successfully!",
+            });
+        }else{
+          res.status(404).json({
+            message: "Not authorized!"
           });
+        }
       })
       .catch((err) => {
           res.status(500).json({

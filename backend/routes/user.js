@@ -35,7 +35,8 @@ router.post('/login', (req, res, next) => {
 
         res.status(200).json({
             token: token,
-            expiresIn: 3600
+            expiresIn: 3600,
+            userId: loadedUser._id
         });
 
     })
@@ -54,6 +55,7 @@ router.post('/signup', (req, res, next) => {
             email: req.body.email,
             password: hash
         });
+        console.log(user);
         user.save()
         .then((response)=>{
             res.status(201).json({
