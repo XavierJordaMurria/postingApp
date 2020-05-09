@@ -25,8 +25,10 @@ export default class AuthService {
         };
 
         this.http.post(url, authData)
-        .subscribe((response) => {
-            console.log(response);
+        .subscribe( () => {
+            this.router.navigate(['/']);
+        }, error => {
+            this.authStatusListener.next(false);
         });
     }
 
@@ -54,6 +56,8 @@ export default class AuthService {
                 this.saveAuthData(this.token, expirationDate, this.userId);
                 this.router.navigate(['/']);
             }
+        }, error => {
+            this.authStatusListener.next(false);
         });
     }
 
