@@ -45,7 +45,7 @@ exports.editPost = (req, res, next) => {
 
     Post.updateOne({_id: post._id, creator: req.userData.userId }, post)
     .then((documents) => {
-        if (documents.nModified > 0){
+        if (documents.n > 0){
           res.status(200).json({
               message: "Update successfully!",
               posts: documents

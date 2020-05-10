@@ -5,8 +5,9 @@ import { map, count } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import IPostDB from './ipost.model.db';
 import { Router } from '@angular/router';
-import { identifierModuleUrl } from '@angular/compiler';
+import { environment } from '../../environments/environment';
 
+const  BACKEND_URL = environment.apiUrl + '/posts/';
 @Injectable({providedIn: 'root'})
 export class PostService {
     private posts: IPost[] = [];
@@ -18,7 +19,7 @@ export class PostService {
 
     getPosts(postPerPage: number, currentPage: number) {
         const queryParams = `?pageSize=${postPerPage}&page=${currentPage}`;
-        this.http.get<{message: string, posts: IPostDB[], maxPosts: number}>('http://localhost:3000/api/posts' + queryParams)
+        this.http.get<{message: string, posts: IPostDB[], maxPosts: number}>(BACKEND_URL + queryParams)
         .pipe(
             map((postData) => {
             return {
@@ -49,7 +50,7 @@ export class PostService {
     }
 
     getPost(postId: string): Observable<IPostDB> {
-        return this.http.get<IPostDB>('http://localhost:3000/api/posts/' + postId);
+        return this.http.get<IPostDB>(BACKEND_URL + postId);
     }
 
 
@@ -62,7 +63,7 @@ export class PostService {
 
         this.http
         .post<{message: string, post: IPost}>(
-            'http://localhost:3000/api/posts',
+            BACKEND_URL,
             postData)
         .subscribe((res) => {
             this.router.navigate(['/']);
@@ -87,7 +88,7 @@ export class PostService {
             };
         }
         this.http.put<{message: string, postId: string}>(
-            'http://localhost:3000/api/posts/' + thePost.id,
+            BACKEND_URL + thePost.id,
             postData)
         .subscribe((res) => {
             this.router.navigate(['/']);
@@ -95,6 +96,6 @@ export class PostService {
     }
 
     deletePost(postId: string): Observable<unknown> {
-        return this.http.delete('http://localhost:3000/api/posts/' + postId);
+        return this.http.delete(BACKEND_URL + postId);
     }
 }

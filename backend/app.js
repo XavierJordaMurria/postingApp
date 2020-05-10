@@ -8,7 +8,7 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://dbLoebre:TestPa55@cluster0-rncbz.mongodb.net/node-angular?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://dbLoebre:'+ process.env.MONGO_ATLAS_PW + '@cluster0-rncbz.mongodb.net/node-angular?retryWrites=true&w=majority',
 { useNewUrlParser: true, useUnifiedTopology: true })
 .then(()=>{console.log('Conected to MongoDB')})
 .catch(()=>{console.error("Failed to connect to MongoDB")});

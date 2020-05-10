@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 
 const User = require('../models/user');
-const jwtSecret = "secret_this_should_be_longer";
+const jwtSecret = process.env.JWT_KEY;
 
 exports.createUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
