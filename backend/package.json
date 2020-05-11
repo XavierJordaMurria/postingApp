@@ -1,8 +1,9 @@
 {
   "name": "mean-course",
-  "version": "2.0",
+  "version": "1.0.0",
   "scripts": {
-    "start:server": "nodemon ./backend/server.js",
+    "start": "node ./server.js",
+    "start:server": "nodemon ./server.js",
     "kill:server": "sudo kill -9 `sudo lsof -t -i:3000`"
   },
   "private": true,
