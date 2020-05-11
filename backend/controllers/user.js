@@ -19,12 +19,13 @@ exports.createUser = (req, res, next) => {
                 message: 'user created',
                 result: response
             });
-        })
-        .catch((e) => {
-            res.status(500).json(
-            {
-                message:`Invalid authentification credentials , e:${e}`
-            });
+        });
+    })
+    .catch((e) => {
+        console.error(e);
+        res.status(500).json(
+        {
+            message:`Invalid authentification credentials , e:${e}`
         });
     });
 }
@@ -63,6 +64,7 @@ exports.userLogin = (req, res, next) => {
 
     })
     .catch((e)=>{
+        console.error(e);
         return res.status(401).json({
             message: "Invalid authentification credentials"
         });

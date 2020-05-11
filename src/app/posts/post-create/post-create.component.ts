@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import IPost from '../ipost.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { PostService } from '../post.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import IPostDB from '../ipost.model.db';
 import { mimeType } from './mime-type.validator';
 import { Subscription } from 'rxjs';
-import AuthService from 'src/app/auth/auth.service';
 
+
+import { PostService } from '../post.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 enum PostCreateStates {
   CREATE = 'create',
@@ -31,9 +32,11 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   imagePreview: string;
   private authStatusSub: Subscription;
 
-  constructor(public postService: PostService,
+  constructor(
+    private authService: AuthService,
+    public postService: PostService,
     public route: ActivatedRoute,
-    private authService: AuthService) { }
+    ) { }
 
 
   ngOnDestroy(): void {

@@ -8,8 +8,8 @@ import { environment } from '../../environments/environment';
 
 const  BACKEND_URL = environment.apiUrl + '/user/';
 
-@Injectable({providedIn: 'root'})
-export default class AuthService {
+@Injectable({ providedIn: 'root' })
+export class AuthService {
     private readonly port = 3000;
     private readonly path = BACKEND_URL;
 

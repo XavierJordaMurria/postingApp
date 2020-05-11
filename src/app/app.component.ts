@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import IPost from './posts/ipost.model';
-import AuthService from './auth/auth.service';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
